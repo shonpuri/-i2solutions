@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_i2solution_quotation">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="sale_extended.external_layout_template_i2">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <div style="width:100%;text-align:center;border-bottom: 14px solid #989898;color:#F51616;">
+                                <h3><b>QUOTATION</b></h3>
+                            </div>
+                            <div>
+                                <div style="width:50%;float:left">
+                                    <div class="row" style="text-align:left;">
+                                        <strong><span t-esc="o.partner_id.name"/></strong><br/>
+                                        <span t-esc="o.partner_id.street"/><br/>
+                                        <span t-esc="o.partner_id.street2"/><br/>
+                                        <span t-esc="o.partner_id.city"/>,&#160;&#160;&#160;
+                                        <span t-esc="o.partner_id.state_id.name"/>,&#160;&#160;&#160;
+                                        <span t-esc="o.partner_id.zip"/><br/>
+                                        <span t-esc="o.partner_id.country_id.name"/>
+                                    </div>  
+                                </div>
+
+                                <div style="width:50%;float:right">
+                                    <div style="text-align:left;width:50%;float:left">
+                                        <span>Quote Date</span><br/> 
+                                        <span>Quote Ref No</span><br/>
+                                        <span>Quote Validity</span><br/>
+                                        <span>Issued By</span><br/>
+                                        <span>Client Name</span><br/>
+                                        <span>Client Mobile No</span> 
+                                    </div>
+                                    <div style="text-align:right;width:50%;float:right">
+                                        <t t-if="o.date_order">
+                                            <span t-esc="o.date_order" />
+                                        </t><br/> 
+                                        <t t-if="o.name">
+                                            <span t-esc="o.name" />
+                                        </t><br/>                                                 
+                                        <t t-if="o.validity_date">
+                                            <span t-esc="o.validity_date" />
+                                        </t><br/>                                                 
+                                        <t t-if="o.name">
+                                            <span t-esc="o.user_id.name" />
+                                        </t><br/>                                               
+                                        <t t-if="o.client_name">
+                                            <span t-esc="o.client_name" />
+                                        </t><br/>                                               
+                                        <t t-if="o.client_mobile">
+                                            <span t-esc="o.client_mobile" />
+                                        </t>                                              
+                                    </div>
+                                </div>
+                            </div>
+                            <br/><br/><br/>
+                            <div style="border-bottom: 5px double #F51616;">
+                                <table class="table table-striped" style="border-top: 5px double #F51616;">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" width="10%">SR.NO</th>
+                                            <th class="text-left">Product Description</th>
+                                            <th class="text-center" width="10%">QTY</th>
+                                            <th class="text-center" width="10%">Unit</th>
+                                            <th class="text-center">Unit Price</th>
+                                            <th class="text-center">VAT Amount</th>
+                                            <th class="text-center">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="price_subtotal" t-value="o.order_line.mapped('price_subtotal')"/>
+                                        <t t-set="tax_id" t-value="o.order_line.mapped('tax_id')"/>
+                                        <t t-set="i" t-value="1" />
+                                        <tr t-foreach="o.order_line" t-as="line">
+                                            <td class="text-center">
+                                                <span t-esc="i" />
+                                                <t t-set="i" t-value="i+1" />
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-esc="line.name" />
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="line.product_uom_qty" />
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="line.product_uom.name"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="line.price_unit" />&#160;&#160;<span t-esc="o.currency_id.symbol"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-if="line.tax_id">
+                                                    <span t-esc="line.tax_id.name"/>
+                                                </t>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="line.price_subtotal" t-options='{"widget": "float", "precision": 2}'/>&#160;&#160;<span t-esc="o.currency_id.symbol"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br/>
+                                <div style="width:30%;float:right">
+                                    <div style="text-align:left;width:50%;float:left">
+                                        <br/><span><b>Sub Total:</b></span><br/>
+                                        <span><b>Total VAT:</b></span><br/>
+                                        <span><b>Net Payable:</b></span> 
+                                    </div>
+                                    <div style="text-align:right;width:50%;float:right">
+                                        <br/><strong t-esc="sum(price_subtotal)" t-options='{"widget": "float", "precision": 2}'/>&#160;&#160;<span t-esc="o.currency_id.symbol"/><br/> 
+                                        <strong t-esc="o.amount_tax" t-options='{"widget": "float", "precision": 2}'/>&#160;&#160;<span t-esc="o.currency_id.symbol"/><br/> 
+                                        <strong t-esc="o.amount_total" t-options='{"widget": "float", "precision": 2}'/>&#160;&#160;<span t-esc="o.currency_id.symbol"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/><br/><br/><br/><br/><br/>
+                            <div style="border-top: 5px double #F51616;min-height:110px;">
+                                <span><b>Special Instruction :</b></span>-<span t-esc="o.special_instruction"/>
+                            </div>
+                            <div style="border-top: 5px double #F51616;min-height:130px;">
+                                <span><b>Terms and Conditions :</b></span>-<span t-esc="o.note"/>
+                            </div>
+                            <div class="row" style="display: flex;border-top: 5px double #F51616;border-bottom: 5px double #F51616;min-height:110px;position: relative;">
+                                <t t-if="not company">
+                                    <!-- Multicompany -->
+                                    <t t-if="company_id">
+                                        <t t-set="company" t-value="company_id"/>
+                                    </t>
+                                    <t t-elif="o and 'company_id' in o">
+                                        <t t-set="company" t-value="o.company_id.sudo()"/>
+                                    </t>
+                                    <t t-else="else">
+                                        <t t-set="company" t-value="res_company"/>
+                                    </t>
+                                </t>
+                                <div style="width:40%;text-align:bottom-center;position: absolute; bottom:0; left:0">
+                                    <strong>Bank Details : </strong><br/>
+                                    <span>Bank Name :</span>
+                                    <span t-esc="company.bank_id.name"/><br/>
+                                    <span>Account Name : </span>
+                                    <span t-esc="company.bank_id.acc_name"/><br/>
+                                    <span>Account Number :</span>
+                                    <span t-esc="company.bank_id.acc_no"/>
+                                </div>  
+                                <div style="width:20%; text-align: bottom-center;position: absolute; bottom:30%; left:40%">
+                                    <span>www.i2solutions.co.in</span>
+                                </div>
+                                <div style="width:40%; text-align: right;position: absolute; bottom:0; right:0">
+                                    <strong><span>Contact Details</span></strong><br/>
+                                    <span t-esc="company.customer"/><br/>
+                                    <span t-esc="company.customer_mobile"/><br/>
+                                    <span t-esc="company.customer_email"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

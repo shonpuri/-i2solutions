@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_i2solution_waybill">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="sale_extended.external_layout_template_i2">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <div style="width:100%;text-align:center;border-bottom: 14px solid #989898;color:#F51616;">
+                                <h3><b>WAYBILL</b></h3>
+                            </div>
+                            <div>
+                                <div style="width:50%;float:left">
+                                    <div class="row" style="text-align:left;">
+                                        <strong><span t-esc="o.partner_id.name"/></strong><br/>
+                                        <span t-esc="o.partner_id.street"/><br/>
+                                        <span t-esc="o.partner_id.street2"/><br/>
+                                        <span t-esc="o.partner_id.city"/>&#160;&#160;&#160;
+                                        <span t-esc="o.partner_id.state_id.name"/>&#160;&#160;&#160;
+                                        <span t-esc="o.partner_id.zip"/><br/>
+                                        <span t-esc="o.partner_id.country_id.name"/>
+                                    </div>  
+                                </div>
+
+                                <div style="width:50%;height:150px;float:right">
+                                    <div style="text-align:left;width:50%;float:left">
+                                        <span>LPO No</span><br/> 
+                                        <span>Waybill Date</span><br/>
+                                        <span>Waybill No</span><br/>
+                                        <span>invoice No</span><br/>
+                                        <span>Client Name</span><br/>
+                                        <span>Client Mobile No</span> 
+                                    </div>
+                                    <div style="text-align:right;width:50%;float:right">
+                                        <span t-esc="o.origin"/><br/>
+                                        <span t-esc="o.date_done.date()"/><br/> 
+                                        <span t-esc="o.name"/><br/> 
+                                        <span t-esc=""/><br/> 
+                                        <span t-esc="o.client_name" /><br/> 
+                                        <span t-esc="o.client_mobile"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="border-bottom: 5px double #F51616;">
+                                <table class="table table-striped" style="border-top: 5px double #F51616;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-left" width="50px">SR.NO</th>
+                                            <th scope="col" class="text-left" >Product Description</th>
+                                            <th scope="col" class="text-left" >Unit</th>
+                                            <th scope="col" class="text-left" >QTY</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="quantity_done" t-value="o.move_ids_without_package.mapped('quantity_done')"/>
+                                        <t t-set="i" t-value="1" />
+                                        <tr t-foreach="o.move_ids_without_package" t-as="line">
+                                            <td scope="row">
+                                                <span t-esc="i" />
+                                                <t t-set="i" t-value="i+1" />
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-esc="line.product_id.name" />
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="line.product_uom.name" />
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="line.quantity_done" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <td colspan="3">
+                                        <br/><strong style="float:right;">TOTAL QUANTITY:</strong>
+                                        <td class="text-right">
+                                           <br/><strong t-esc="sum(quantity_done)" t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                    </td>
+                                </table>
+                            </div>
+                            <div style="border-bottom: 5px double #F51616;min-height:150px;">
+                                <span><b>Delivery Address (if any others)</b></span>
+                            </div>
+                            <div style="border-bottom: 5px double #F51616;min-height:150px;">
+                                <span><b>Terms and Conditions :</b></span>-<span t-esc="o.note"/>
+                            </div>
+                            <div class="row" style="border-bottom: 5px double #F51616;min-height:130px;display: flex;position: relative;">
+                                <div style="width:40%;text-align:left;position:absolute; bottom:0; left:0">
+                                    <strong><span>Receiver Name</span></strong>
+                                </div>  
+                                <div style="width:30%; text-align: bottom-center;position:absolute; bottom:0; left:35%">
+                                    <strong><span>Receiver Contact Number</span></strong>
+                                </div>
+                                <div style="width:30%; text-align: right;position:absolute; bottom:0; right:0">
+                                    <strong><span>Receiver Signature</span></strong>
+                                </div>
+                            </div>
+                            <div class="row" style="display: flex;position: relative;min-height:110px;border-bottom: 5px double #F51616;">
+                                <t t-if="not company">
+                                    <!-- Multicompany -->
+                                    <t t-if="company_id">
+                                        <t t-set="company" t-value="company_id"/>
+                                    </t>
+                                    <t t-elif="o and 'company_id' in o">
+                                        <t t-set="company" t-value="o.company_id.sudo()"/>
+                                    </t>
+                                    <t t-else="else">
+                                        <t t-set="company" t-value="res_company"/>
+                                    </t>
+                                </t>
+                                <div style="width:40%;text-align:left;position:absolute; bottom:0; left:0">
+                                    <strong><span>Head Office</span></strong><br/>
+                                    <span t-esc="company.ho_name"/><br/>
+                                    <span t-esc="company.ho_address"/><br/>
+                                    <span t-esc="company.location"/>
+                                </div>  
+                                <div style="width:20%; text-align: bottom-center;position:absolute; bottom:30%; left:40%">
+                                    <span>www.i2solutions.co.in</span>
+                                </div>
+                                <div style="width:40%; text-align: right;position:absolute; bottom:0; right:0">
+                                    <strong><span>Contact Details</span></strong><br/>
+                                    <span t-esc="company.customer"/><br/>
+                                    <span>Mobile</span>:<span t-esc="company.customer_mobile"/><br/>
+                                    <span>Email</span>:<span t-esc="company.customer_email"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
