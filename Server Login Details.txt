@@ -2,3 +2,4 @@
 ssh root@162.241.120.160
 Odootest@2023
 https://github.com/shonpuri/-i2solutions.git
+test
