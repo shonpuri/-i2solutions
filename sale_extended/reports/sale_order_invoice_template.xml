@@ -16,8 +16,8 @@
                                         <strong><span t-esc="o.partner_id.name"/></strong><br/>
                                         <span t-esc="o.partner_id.street"/><br/>
                                         <span t-esc="o.partner_id.street2"/><br/>
-                                        <span t-esc="o.partner_id.city"/>,&#160;&#160;&#160;
-                                        <span t-esc="o.partner_id.state_id.name"/>,&#160;&#160;&#160;
+                                        <span t-esc="o.partner_id.city"/>&#160;&#160;&#160;
+                                        <span t-esc="o.partner_id.state_id.name"/>&#160;&#160;&#160;
                                         <span t-esc="o.partner_id.zip"/><br/>
                                         <span t-esc="o.partner_id.country_id.name"/>
                                     </div>  
