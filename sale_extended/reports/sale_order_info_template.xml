@@ -7,7 +7,7 @@
                     <t t-call="sale_extended.external_layout_template_i2">
                         <div class="page">
                             <div class="oe_structure"/>
-                            <div style="width:100%;text-align:center;border-bottom: 14px solid #989898;color:#F51616;">
+                            <div style="width:100%;text-align:center;border-bottom: 14px solid #C0C0C0;color:#800000;">
                                 <h3><b>QUOTATION</b></h3>
                             </div>
                             <div>
@@ -55,8 +55,8 @@
                                 </div>
                             </div>
                             <br/><br/><br/>
-                            <div style="border-bottom: 5px double #F51616;">
-                                <table class="table table-striped" style="border-top: 5px double #F51616;">
+                            <div style="border-bottom: 5px double #800000;">
+                                <table class="table table-striped" style="border-top: 5px double #800000;">
                                     <thead>
                                         <tr>
                                             <th class="text-center" width="10%">SR.NO</th>
@@ -64,7 +64,9 @@
                                             <th class="text-center" width="10%">QTY</th>
                                             <th class="text-center" width="10%">Unit</th>
                                             <th class="text-center">Unit Price</th>
-                                            <th class="text-center">VAT Amount</th>
+                                            <!-- <th class="text-center">VAT Amount</th> -->
+                                            <th class="text-center">Discount(%)</th>
+                                            <th class="text-center">Discount Amount</th>
                                             <th class="text-center">Total</th>
                                         </tr>
                                     </thead>
@@ -89,9 +91,19 @@
                                             <td class="text-center">
                                                 <span t-esc="line.price_unit" />&#160;&#160;<span t-esc="o.currency_id.symbol"/>
                                             </td>
-                                            <td class="text-center">
+<!--                                             <td class="text-center">
                                                 <t t-if="line.tax_id">
                                                     <span t-esc="line.tax_id.name"/>
+                                                </t>
+                                            </td> -->
+                                            <td class="text-center">
+                                                <t t-if="line.discount">
+                                                    <span t-esc="line.discount"/>
+                                                </t>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-if="line.discount_amount">
+                                                    <span t-esc="line.discount_amount"/>
                                                 </t>
                                             </td>
                                             <td class="text-center">
@@ -115,13 +127,13 @@
                                 </div>
                             </div>
                             <br/><br/><br/><br/><br/><br/>
-                            <div style="border-top: 5px double #F51616;min-height:110px;">
+                            <div style="border-top: 5px double #800000;min-height:110px;">
                                 <span><b>Special Instruction :</b></span>-<span t-esc="o.special_instruction"/>
                             </div>
-                            <div style="border-top: 5px double #F51616;min-height:130px;">
+                            <div style="border-top: 5px double #800000;min-height:130px;">
                                 <span><b>Terms and Conditions :</b></span>-<span t-esc="o.note"/>
                             </div>
-                            <div class="row" style="display: flex;border-top: 5px double #F51616;border-bottom: 5px double #F51616;min-height:110px;position: relative;">
+                            <div class="row" style="display: flex;border-top: 5px double #800000;min-height:110px;position: relative;">
                                 <t t-if="not company">
                                     <!-- Multicompany -->
                                     <t t-if="company_id">

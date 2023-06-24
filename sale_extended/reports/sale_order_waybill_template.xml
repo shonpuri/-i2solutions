@@ -7,7 +7,7 @@
                     <t t-call="sale_extended.external_layout_template_i2">
                         <div class="page">
                             <div class="oe_structure"/>
-                            <div style="width:100%;text-align:center;border-bottom: 14px solid #989898;color:#F51616;">
+                            <div style="width:100%;text-align:center;border-bottom: 14px solid #C0C0C0;color:#800000;">
                                 <h3><b>WAYBILL</b></h3>
                             </div>
                             <div>
@@ -42,8 +42,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="border-bottom: 5px double #F51616;">
-                                <table class="table table-striped" style="border-top: 5px double #F51616;">
+                            <div style="border-bottom: 5px double #800000;">
+                                <table class="table table-striped" style="border-top: 5px double #800000;">
                                     <thead>
                                         <tr>
                                             <th scope="col" class="text-left" width="50px">SR.NO</th>
@@ -79,13 +79,13 @@
                                     </td>
                                 </table>
                             </div>
-                            <div style="border-bottom: 5px double #F51616;min-height:150px;">
+                            <div style="border-bottom: 5px double #800000;min-height:150px;">
                                 <span><b>Delivery Address (if any others)</b></span>
                             </div>
-                            <div style="border-bottom: 5px double #F51616;min-height:150px;">
+                            <div style="border-bottom: 5px double #800000;min-height:150px;">
                                 <span><b>Terms and Conditions :</b></span>-<span t-esc="o.note"/>
                             </div>
-                            <div class="row" style="border-bottom: 5px double #F51616;min-height:130px;display: flex;position: relative;">
+                            <div class="row" style="border-bottom: 5px double #800000;min-height:130px;display: flex;position: relative;">
                                 <div style="width:40%;text-align:left;position:absolute; bottom:0; left:0">
                                     <strong><span>Receiver Name</span></strong>
                                 </div>  
@@ -96,7 +96,7 @@
                                     <strong><span>Receiver Signature</span></strong>
                                 </div>
                             </div>
-                            <div class="row" style="display: flex;position: relative;min-height:110px;border-bottom: 5px double #F51616;">
+                            <div class="row" style="display: flex;position: relative;min-height:110px;">
                                 <t t-if="not company">
                                     <!-- Multicompany -->
                                     <t t-if="company_id">
