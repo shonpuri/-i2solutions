@@ -38,13 +38,18 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    tax_count = fields.Float(compute='_compute_tax_total')
+    discount_amount = fields.Float(compute='_compute_disc_total',store=True)
+
+    @api.depends('product_uom_qty','price_unit','discount')
+    def _compute_disc_total(self):
+        for disc in self:
+            if disc.discount:
+                disc.discount_amount = (disc.product_uom_qty * disc.price_unit * disc.discount)/100
+            else:
+                disc.discount_amount = 0
 
 
-    # @api.depends('tax_id','price_subtotal')
-    # def _compute_tax_total(self):
-    #     for tax in self:
-    #         tax.tax_count = tax.tax_id * tax.price_subtotal
+
 
 class AccountMove(models.Model):
     _inherit = 'account.move'

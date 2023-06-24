@@ -7,7 +7,7 @@
                     <t t-call="sale_extended.external_layout_template_i2">
                         <div class="page">
                             <div class="oe_structure"/>
-                            <div style="width:100%;text-align:center;border-bottom: 14px solid #989898;color:#F51616;">
+                            <div style="width:100%;text-align:center;border-bottom: 14px solid #C0C0C0;color:#800000;">
                                 <h3><b>INVOICE</b></h3>
                             </div>
                             <div>
@@ -44,7 +44,7 @@
                             </div>
                             <br/><br/><br/>
                             <div>
-                                <table class="table table-striped" style="border-top: 5px double #F51616;">
+                                <table class="table table-striped" style="border-top: 5px double #800000;">
                                     <thead>
                                         <tr>
                                             <th class="text-left" width="10%">SR.NO</th>
@@ -115,7 +115,7 @@
                                     <t t-set="company" t-value="res_company"/>
                                 </t>
                             </t>
-                            <div class="row" style="border-bottom: 5px double #F51616;border-top: 5px double #F51616;min-height:100px;display: flex;position: relative;">
+                            <div class="row" style="border-bottom: 5px double #800000;border-top: 5px double #800000;min-height:100px;display: flex;position: relative;">
                                 <div style="width:33%;text-align:left;position:absolute; bottom:0; left:0;">
                                     <strong><span>Receiver Name</span></strong>-
                                 </div>  
@@ -126,7 +126,7 @@
                                     <strong><span>Receiver Signature</span></strong>
                                 </div>
                             </div>
-                            <div class="row" style="border-bottom: 5px double #F51616;min-height:110px;display: flex;position:relative;">
+                            <div class="row" style="border-bottom: 5px double #800000;min-height:110px;display: flex;position:relative;">
                                 <div style="width:33%;text-align:left;position:absolute; bottom:0; left:0;">
                                     <strong><span>RC / CAC No :</span></strong>-<span t-esc="company.rc_no"/>
                                 </div>  
@@ -137,7 +137,7 @@
                                     <strong><span>TIN No :</span></strong>-<span t-esc="company.tin_no"/>
                                 </div>
                             </div>
-                            <div class="row" style="display: flex;border-bottom: 5px double #F51616;position: relative;min-height:107px;">
+                            <div class="row" style="display: flex;position: relative;min-height:107px;">
                                 <div style="width:40%;text-align:bottom-center;position: absolute; bottom:0; left:0">
                                     <strong>Bank Details: </strong><br/>
                                     <span>Bank Name</span>

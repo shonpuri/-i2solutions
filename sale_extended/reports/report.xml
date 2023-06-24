@@ -18,7 +18,7 @@
         </t>
 
         <div class="header">
-           <div style="min-height:133px;background-color: #989898;border-bottom: 14px solid #F51616;">
+           <div style="min-height:133px;background-color: #989898;border-bottom: 14px solid #800000;">
                 <div style="width:68%;float:left;">
                     <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo" style="max-height:118px;"/>
                 </div>
@@ -50,7 +50,7 @@
             </div>
         </div>
          <div class="footer o_standard_footer">
-            <div class="row" style="border-top: 10px solid #F51616;padding-top:10px;">
+            <div class="row" style="border-top: 10px solid #800000;padding-top:10px;">
                 <div style="width:16%;">
                     <img src='/sale_extended/static/src/img/image1.jpg' style="height: 65px;width:100px;"/>
                 </div>
