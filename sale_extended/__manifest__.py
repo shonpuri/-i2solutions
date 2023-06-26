@@ -6,7 +6,7 @@
     'category': 'Sale',
     'version': '16.0.0',
     'author':'Dishicreation',
-    'depends': ['sale','stock'],
+    'depends': ['sale','stock','account'],
     'data': [
             # 'security/ir.model.access.csv',
             'reports/sale_order_info_template.xml',
