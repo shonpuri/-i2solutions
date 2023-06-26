@@ -28,15 +28,15 @@
                                         <span>LPO No</span><br/> 
                                         <span>Waybill Date</span><br/>
                                         <span>Waybill No</span><br/>
-                                        <span>invoice No</span><br/>
+                                        <span>Invoice No</span><br/>
                                         <span>Client Name</span><br/>
                                         <span>Client Mobile No</span> 
                                     </div>
                                     <div style="text-align:right;width:50%;float:right">
-                                        <span t-esc="o.origin"/><br/>
+                                        <span t-esc="o.lpo_no"/><br/>
                                         <span t-esc="o.date_done.date()"/><br/> 
                                         <span t-esc="o.name"/><br/> 
-                                        <span t-esc=""/><br/> 
+                                        <span t-esc="o.invoice_no"/><br/> 
                                         <span t-esc="o.client_name" /><br/> 
                                         <span t-esc="o.client_mobile"/>
                                     </div>
@@ -80,7 +80,7 @@
                                 </table>
                             </div>
                             <div style="border-bottom: 5px double #800000;min-height:150px;">
-                                <span><b>Delivery Address (if any others)</b></span>
+                                <span><b>Delivery Address (if any others)</b></span><br/><span t-esc="o.add_address"/>
                             </div>
                             <div style="border-bottom: 5px double #800000;min-height:150px;">
                                 <span><b>Terms and Conditions :</b></span>-<span t-esc="o.note"/>

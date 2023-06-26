@@ -75,7 +75,7 @@
                                                 <span t-esc="line.product_uom_id.name"/>
                                             </td>
                                             <td class="text-center">
-                                                <span t-esc="line.price_unit" />&#160;&#160;<span t-esc="o.currency_id.symbol"/>
+                                                <span t-esc="line.price_unit" t-options='{"widget": "float", "precision": 2}'/>&#160;&#160;<span t-esc="o.currency_id.symbol"/>
                                             </td>
                                             <td class="text-center">
                                                 <t t-foreach="line.tax_ids" t-as="pick">
@@ -89,13 +89,13 @@
                                     </tbody>
                                 </table>
                                 <br/>
-                                <div style="width:25%;float:right;border-top: 5px double #989898;">
-                                    <div style="text-align:left;width:50%;float:left">
+                                <div style="width:40%;float:right;border-top: 5px double #989898;">
+                                    <div style="text-align:left;width:30%;float:left">
                                         <span><b>Sub Total:</b></span><br/>
                                         <span><b>Total VAT:</b></span><br/>
                                         <span><b>Net Payable:</b></span> 
                                     </div>
-                                    <div style="text-align:right;width:50%;float:right">
+                                    <div style="text-align:right;width:70%;float:right">
                                         <strong t-esc="sum(price_subtotal)" t-options='{"widget": "float", "precision": 2}'/>&#160;&#160;<span t-esc="o.currency_id.symbol"/><br/> 
                                         <strong t-esc="o.amount_tax" t-options='{"widget": "float", "precision": 2}'/>&#160;&#160;<span t-esc="o.currency_id.symbol"/><br/> 
                                         <strong t-esc="o.amount_total" t-options='{"widget": "float", "precision": 2}'/>&#160;&#160;<span t-esc="o.currency_id.symbol"/>
