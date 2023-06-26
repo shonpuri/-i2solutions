@@ -62,3 +62,6 @@ class StockPicking(models.Model):
 
     client_name = fields.Char(string="Client Name")
     client_mobile = fields.Char(string="Client Mobile Number")
+    lpo_no = fields.Char(string="LPO No.")
+    invoice_no = fields.Char(string="Invoice No.")
+    add_address = fields.Text(string="Additional Delivery Address")

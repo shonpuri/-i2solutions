@@ -95,6 +95,13 @@
                 <xpath expr="//field[@name='origin']" position="after">
                     <field name="client_name"/>
                     <field name="client_mobile"/>
+                    <field name="lpo_no"/>
+                    <field name="invoice_no"/>
+                </xpath>
+                <xpath expr="//page[last()]" position="after">
+                    <page string="Additional Delivery Address">
+                        <field name="add_address"/>
+                    </page>
                 </xpath>
             </field>
     </record>
